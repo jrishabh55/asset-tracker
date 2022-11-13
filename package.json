@@ -2,6 +2,10 @@
   "name": "codeation-template",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Rishabh Jain",
+    "email": "hello@rishabhjain.dev"
+  },
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
