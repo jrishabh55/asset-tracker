@@ -9,3 +9,14 @@ body {
   @apply dark:text-gray-200;
 }
 
+
+input, textarea, select, button {
+  @apply dark:bg-gray-900/20 dark:text-gray-200 border-gray-500 border-opacity-10 rounded-md p-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50;
+}
+
+details {
+  summary {
+    @apply cursor-pointer;
+  }
+}

@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './page/**/*.{js,ts,jsx,tsx}', './ui/**/*.{js,ts,jsx,tsx}'],
-  plugins: [require('@tailwindcss/forms')],
+  // plugins: [require('@tailwindcss/forms')],
   theme: {
     extend: {
       colors: {
@@ -12,6 +12,10 @@ module.exports = {
           pink: '#FF0080',
           violet: '#7928CA',
         },
+      },
+      fontSize: {
+        '7xl': '5rem',
+        xxs: '.625rem',
       },
       keyframes: ({ theme }) => ({
         fadeToTransparent: {
