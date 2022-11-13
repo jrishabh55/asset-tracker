@@ -11,7 +11,7 @@ const formDataToJson = (formData: FormData) => {
     }
 
     let val: string | number | boolean = value;
-    if (parseFloat(value)) {
+    if (!isNaN(Number(value))) {
       val = parseFloat(value);
     }
     set(json, key, val);

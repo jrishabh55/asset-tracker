@@ -45,7 +45,7 @@ const addAssets = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const count = await client.userStock.count({ where: { name: data.name, user: { id: userObj.id } } });
+    const count = await client.userStock.count({ where: { name: data.name, userId: userObj.id } });
 
     if (count > 0) {
       return res.status(400).json({ message: 'Stock already exists' });

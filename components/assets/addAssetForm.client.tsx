@@ -15,7 +15,7 @@ const AddAssetForm = ({ userSelect }) => {
     setAddLoading(true);
     const userData = formDataToJson(new FormData(e.currentTarget));
 
-    // e.currentTarget.reset();
+    e.currentTarget.reset();
     fetch('/api/assets', {
       body: JSON.stringify(userData),
       headers: {
