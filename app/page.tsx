@@ -1,18 +1,16 @@
-import AddAssetForm from '@/components/assets/addAssetForm.client';
 import AssetsList from '@/components/assets/assetsList';
 import Card from '@/components/card';
+import TriggerList from '@/components/trigger/triggerList';
 
 const IndexPage = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="flex flex-row gap-10 w-1/2 min-w-max">
-        <Card className="grid items-center align-middle w-1/2 -translate-y-20" header="Add Asset">
-          <AddAssetForm />
-        </Card>
-        <Card className="max-w-md w-3/4 -translate-y-20" header="Assets list">
-          <AssetsList />
-        </Card>
-      </div>
+    <div className="flex w-full items-center md:justify-center md:items-start min-w-[28rem] p-10 md:h-full gap-4 flex-col md:flex-row flex-wrap">
+      <Card className="max-w-lg flex-grow justify-center" header="Triggers">
+        <TriggerList />
+      </Card>
+      <Card className="max-w-lg flex-grow justify-center" header="Assets">
+        <AssetsList />
+      </Card>
     </div>
   );
 };

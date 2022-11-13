@@ -27,9 +27,9 @@ const AssetRow: FC<UserStock & { triggers?: NotificationTrigger[] }> = ({ name, 
         </div>
         <KpiItem label="Qty">{quantity}</KpiItem>
         <KpiItem label="Price">{purchasePrice}</KpiItem>
-        <div>
+        {/* <div>
           <Button size="sm">Trigger</Button>
-        </div>
+        </div> */}
       </div>
       {triggers.length > 0 && (
         <details className="mt-3">

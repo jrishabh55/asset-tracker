@@ -17,6 +17,6 @@ input, textarea, select, button {
 
 details {
   summary {
-    @apply cursor-pointer;
+    @apply cursor-pointer select-none;
   }
 }

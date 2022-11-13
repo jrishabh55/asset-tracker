@@ -10,7 +10,7 @@ const Card: FCC<{ className?: string; header?: string }> = ({ children, classNam
       })}>
       {header && (
         <header className="border-b border-gray-800 pb-2 border-dashed">
-          {header && <h2 className="text-2xl font-bold">{header}</h2>}
+          {header && <h2 className="text-2xl font-semibold text-blue-500">{header}</h2>}
         </header>
       )}
       <main>{children}</main>

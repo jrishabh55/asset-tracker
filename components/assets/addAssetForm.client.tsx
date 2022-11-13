@@ -6,7 +6,7 @@ import formDataToJson from '@/utils/formDataToJson';
 
 import Button from '../button';
 
-const AddAssetForm = () => {
+const AddAssetForm = ({ userSelect }) => {
   const [addLoading, setAddLoading] = useState(false);
   const router = useRouter();
 
@@ -32,15 +32,14 @@ const AddAssetForm = () => {
       })
       .finally(() => {
         setAddLoading(false);
-        router.refresh();
+        router.push('/');
       });
-
-    console.log('submit');
   };
 
   return (
     <>
       <form className="space-x-2 space-y-4 flex justify-center flex-col items-center px-4" onSubmit={handleSubmit}>
+        {userSelect && <div className="w-full">{userSelect}</div>}
         <div className="w-full">
           <input required autoComplete="off" className="w-full" id="name" name="name" placeholder="Asset name" />
         </div>

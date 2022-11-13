@@ -2,15 +2,20 @@ import { PrismaClient } from '@prisma/client';
 import dayjs from 'dayjs';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import buildApiRoutes from '@/utils/buildApiRoutes';
+
 const addAssets = async (req: NextApiRequest, res: NextApiResponse) => {
   // do something
   const client = new PrismaClient();
-  const { stopLoss, target, trigger, ...data } = req.body;
+  const { stopLoss, target, trigger, user: userObj, ...data } = req.body;
 
-  let triggerObj: any;
+  if (!userObj) {
+    return res.status(400).json({ message: 'User is required' });
+  }
+
   const user = {
     connect: {
-      id: 'e8748946-f292-4936-9bda-ea51d22a9bce',
+      id: userObj.id,
     },
   };
 
@@ -39,15 +44,18 @@ const addAssets = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  if (triggers.length > 0) {
-    triggerObj = {
-      create: triggers,
-    };
-  }
   try {
+    const count = await client.userStock.count({ where: { name: data.name, user: { id: userObj.id } } });
+
+    if (count > 0) {
+      return res.status(400).json({ message: 'Stock already exists' });
+    }
+
     await client.userStock.create({
       data: {
-        triggers: triggerObj,
+        triggers: {
+          create: triggers,
+        },
         user,
         ...data,
       },
@@ -59,10 +67,6 @@ const addAssets = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    return addAssets(req, res);
-  } else {
-    // Handle any other HTTP method
-  }
-}
+export default buildApiRoutes({
+  post: addAssets,
+});
