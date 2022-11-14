@@ -33,6 +33,7 @@ const AddAssetForm = ({ userSelect }) => {
       .finally(() => {
         setAddLoading(false);
         router.push('/');
+        router.refresh();
       });
   };
 
