@@ -8,12 +8,12 @@ import KpiItem from '../common/KpiItem';
 export type TriggerRowProps = NotificationTrigger & { stock: UserStock };
 
 const TriggerRow: FC<TriggerRowProps> = ({ stock, triggerType, triggerValue }) => {
-  let isError = false;
+  let isPast = false;
   const value = triggerType === 'DATE' ? dayjs(triggerValue).format('DD/MM/YYYY') : triggerValue;
 
   if (triggerType?.toLowerCase?.() === 'date') {
     if (dayjs().diff(value, 'D') > 0) {
-      isError = true;
+      isPast = true;
     }
   }
   return (
@@ -24,7 +24,7 @@ const TriggerRow: FC<TriggerRowProps> = ({ stock, triggerType, triggerValue }) =
           <span className="text-xs inline-block ml-2 text-gray-500"> ({triggerType?.replaceAll('_', ' ')?.toLocaleLowerCase()})</span>
         </div>
         <KpiItem label={triggerType === 'DATE' ? 'Trigger Date' : 'Trigger Value'}>
-          <span className={clsx({ 'text-red-500': isError })}>{value}</span>
+          <span className={clsx({ 'text-red-500': isPast })}>{value}</span>
         </KpiItem>
       </div>
     </>
