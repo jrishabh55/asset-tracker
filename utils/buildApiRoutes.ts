@@ -1,15 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-type MethodType = 'get' | 'post' | 'put' | 'delete' | 'patch' | 'options' | 'head';
-const methods: MethodType[] = ['get', 'post', 'put', 'patch', 'delete', 'options', 'head'];
+const methods = ['get', 'post', 'put', 'patch', 'delete', 'options', 'head'] as const;
+
+type MethodType = typeof methods[number];
 
 const buildApiRoutes = (routesFun: Partial<Record<MethodType, (req: NextApiRequest, res: NextApiResponse) => void>>) => {
   return (req: NextApiRequest, res: NextApiResponse) => {
     const method: MethodType = req.method?.toLowerCase() as MethodType;
-    if (method && methods.includes(method)) {
-      return routesFun[method](req, res);
+    if (typeof routesFun[method] !== 'function') {
+      return res.status(405).end();
     }
-    res.status(405).end();
+
+    return routesFun[method](req, res);
   };
 };
 
