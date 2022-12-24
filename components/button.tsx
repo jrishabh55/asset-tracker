@@ -14,7 +14,7 @@ export type ButtonProps = FCC<
   }
 >;
 
-const Button: ButtonProps = ({ bg, block, children, loading, ...props }) => {
+const Button: ButtonProps = ({ bg = 'default', block = false, children, disabled = false, loading = false, size = 'md', ...props }) => {
   return (
     <button
       className={clsx('relative disabled:bg-opacity-70 disabled:cursor-not-allowed rounded text-white', {
@@ -24,12 +24,12 @@ const Button: ButtonProps = ({ bg, block, children, loading, ...props }) => {
         'bg-red-500 hover:bg-red-500/90': bg === 'red',
         'bg-yellow-500 hover:bg-yellow-700': bg === 'yellow',
         'block w-full': block,
-        disabled: loading || props.disabled,
-        'text-lg font-bold py-3 px-4': props.size === 'lg',
-        'text-md font-bold py-2 px-4': props.size === 'md',
-        'text-xs py-1 px-1': props.size === 'sm',
+        disabled: loading || disabled,
+        'text-lg font-bold py-3 px-4': size === 'lg',
+        'text-md font-bold py-2 px-4': size === 'md',
+        'text-xs py-1 px-1': size === 'sm',
       })}
-      disabled={props.disabled ?? loading}
+      disabled={disabled ?? loading}
       {...props}>
       <span className="relative">
         {loading && (
@@ -41,13 +41,6 @@ const Button: ButtonProps = ({ bg, block, children, loading, ...props }) => {
       {!loading && children}
     </button>
   );
-};
-
-Button.defaultProps = {
-  bg: 'default',
-  block: false,
-  loading: false,
-  size: 'md',
 };
 
 export default Button;

@@ -4,11 +4,11 @@ import TriggerList from '@/components/trigger/triggerList';
 
 const IndexPage = () => {
   return (
-    <div className="flex w-full items-center md:justify-center md:items-start min-w-[28rem] p-10 md:h-full gap-4 flex-col md:flex-row flex-wrap">
-      <Card className="max-w-lg flex-grow justify-center" header="Triggers">
+    <div className="flex w-full items-center md:justify-center md:items-start md:min-w-[28rem] p-10 md:h-full gap-4 flex-col md:flex-row flex-wrap">
+      <Card className="md:max-w-lg flex-grow justify-center" header="Triggers">
         <TriggerList />
       </Card>
-      <Card className="max-w-lg flex-grow justify-center" header="Assets">
+      <Card className="md:max-w-lg flex-grow justify-center" header="Assets">
         <AssetsList />
       </Card>
     </div>

@@ -1,11 +1,9 @@
-'use client';
 import { NotificationTrigger, UserStock } from '@prisma/client';
 import dayjs from 'dayjs';
 import { FC } from 'react';
 
 import { FCC } from '@/globalTypes';
 
-import Button from '../button';
 import List from '../common/List';
 
 const KpiItem: FCC<{ label: string }> = ({ children, label }) => {
